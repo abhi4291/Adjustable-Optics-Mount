@@ -16,6 +16,7 @@ translate ([30,59.64,-.1]) cylinder (h = 2.75, r =4.5, center = false);
 
 }
 
+
 hull () {
 
 translate ([0,2.5,5]) cube ([30,8, 7.26], center = false);
@@ -23,6 +24,7 @@ translate ([0,7,5]) cylinder (h = 7.26, r = 5, center = false);
 translate ([30,7,5]) cylinder (h = 7.26, r = 5, center = false);
 
 }
+
 
 hull () {
 
@@ -65,119 +67,41 @@ module base () {
 
 difference () {
 
-translate ([-6.5,66.64,0]) rotate ([0,0,-90]) cube ([66.64, 43.27, 12.25], center = false);
-
+translate ([-8.5,68.64,0]) rotate ([0,0,-90]) cube ([70.64, 47.27, 12.25], center = false);
 cutout2();
 
 }
 
 }
 
-/////
 
-module gear_holder () {
-
-difference () {
-
-translate ([0,22.5,-0.1]) { 
-
-rotate([0, 270, 0]) {
-
-cube ([15,25,25], center = true);
-
-}
-
-}
-
-cube ([15, 15, 60.0], center = true);
-
-}
-
-}
-
-module main_base () {
-
-difference () {
-
-cube ([25, 25, 50.75], center = true);
-
-translate ([0,0,-0.1]) { 
-
-cube ([15, 15, 60.0], center = true);
-
-}
-
-}
-
-}
-
-module quarter_final_base () {
-
-union () {
-
-main_base ();
-
-gear_holder ();
-
-}
-
-}
-
-
-module semi_final_base () {
-
-difference () {
-
-quarter_final_base ();
-
-translate ([0,20,0]) {
-
-cube ([15, 40, 20], center = true);
-
-}
-
-}
-
-
-
-}
 
 module final_base () {
 
 difference () {
 
-semi_final_base ();
+union(){
 
-translate ([0,18,-0.1]) { 
+cube ([25, 25, 50.75], center = true);
+translate ([12.5,12.5,-0.1])rotate([0, 270, 0])
+linear_extrude(height = 25) polygon(points=[[0,-10],[25.475,-10],[25.475,7.5],[16,7.5],[8.5,0]], convexity = 10);
 
-rotate([0, 90, 0]) {
-
-cube ([3,25,50], center = true);
-
-//cylinder (r = 1.5, h= 27, center = true);
 
 }
 
+translate ([0,-7.5+22,20])rotate([0, 90, 0])cylinder (r = 2, h= 27, center = true, $fn=20);
+translate ([0,11.5,0])cube ([14.5, 40, 80], center = true);
+}
 }
 
-}
 
-}
 
 module Project_3 () {
 
+
 union () {
 
-translate ([6,33.32,37.625]) {
-
-rotate ([0,0,270]){
-
-final_base ();
-
-}
-
-}
-
+translate ([4,33.32,37.625])rotate ([0,0,270])final_base();
 base ();
 
 }
