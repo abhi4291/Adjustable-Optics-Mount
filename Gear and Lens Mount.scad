@@ -164,8 +164,8 @@ d12=pitch_radius(mm_per_tooth,n1) + pitch_radius(mm_per_tooth,n2);
 d13=pitch_radius(mm_per_tooth,n1) + pitch_radius(mm_per_tooth,n3);
 d14=pitch_radius(mm_per_tooth,n1) + pitch_radius(mm_per_tooth,n4);
 
-//translate([0,0,0]) rotate([0,0, $t*360/n1])color([1.00,0.75,0.75])
-//gear(mm_per_tooth,n1,thickness,hole);
+translate([0,0,0]) rotate([0,0, $t*360/n1])color([1.00,0.75,0.75])
+gear(mm_per_tooth,n1,thickness,hole);
 
 translate([(-floor(n5/2)-floor(n1/2)+$t+n1/2-1/2)*9+20, -d1-10.0, 0]) rotate([0,0,0]) color([0.75,0.75,0.75]){
 union(){
